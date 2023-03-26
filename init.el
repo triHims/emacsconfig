@@ -39,7 +39,7 @@
   '(custom-safe-themes
      '("7abe2b502db3ed511fea7ab84b62096ba15a3a71cdb106fd989afa179ff8ab8d" default))
   '(package-selected-packages
-     '(evil-surround monokai-theme eglot yasnippet-snippets yasnippet corfu ido-vertical-mode use-package which-key evil)))
+     '(evil-surround monokai-theme eglot yasnippet-snippets yasnippet corfu ido-vertical-mode use-package which-key evil))
 '(warning-suppress-types '((comp))))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -61,7 +61,7 @@
 
 
 ;; Enable ido configs
-(ido-everywhere t)
+(ido-everywhere 1)
 (ido-mode 1)
 (fido-mode 1)
 (fido-vertical-mode 1)
