@@ -60,7 +60,7 @@
 
 
 ;; Enable ido configs
-(ido-everywhere t)
+(ido-everywhere 1)
 (ido-mode 1)
 (fido-mode 1)
 (fido-vertical-mode 1)
