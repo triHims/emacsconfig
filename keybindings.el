@@ -8,6 +8,6 @@
 (evil-global-set-key 'normal (kbd "<leader>fr") 'ido-recentf-open)
 
 
-(evil-define-key 'normal flymake-mode-map "[d" 'flymake-goto-prev-error)
-(evil-define-key 'normal flymake-mode-map"]d" 'flymake-goto-next-error)
-(evil-define-key 'normal eglot-mode-map "<leader>lr" 'elgot-rename)
+(evil-define-key 'normal flymake-mode-map (kbd "[d") 'flymake-goto-prev-error)
+(evil-define-key 'normal flymake-mode-map (kbd "]d") 'flymake-goto-next-error)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>lr") 'eglot-rename)

@@ -60,8 +60,8 @@
 
 
 ;; Enable ido configs
-(ido-everywhere 1)
 (ido-mode 1)
+(ido-everywhere 1)
 (fido-mode 1)
 (fido-vertical-mode 1)
 
@@ -186,3 +186,5 @@
       )
 
 
+
+(setq config-loaded-himanshu-text "Config has been loaded")
