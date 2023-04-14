@@ -14,7 +14,11 @@
 (use-package evil
 	     :ensure t
 	     :init
-	     (evil-mode 1))
+	     (evil-mode 1)
+	     (evil-select-search-module 'evil-search-module 'evil-search)
+	     (setq evil-undo-system 'undo-redo)
+	     )
+
 
 (use-package evil-surround
   :ensure t
@@ -39,7 +43,7 @@
  '(custom-safe-themes
    '("9abe2b502db3ed511fea7ab84b62096ba15a3a71cdb106fd989afa179ff8ab8d" default))
  '(package-selected-packages
-   '(evil-surround monokai-theme eglot yasnippet-snippets yasnippet corfu ido-vertical-mode use-package which-key evil)))
+   '(coverlay json-mode typescript-mode typescript tsx-mode tree-sitter-langs tree-sitter treemacs-evil treemacs magit evil-surround monokai-theme eglot yasnippet-snippets yasnippet corfu ido-vertical-mode use-package which-key evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -81,6 +85,7 @@
 ;;Load misc functions 
 
 (load "~/.emacs.d/extra_functions.el")
+
 
 
 ;;Recentf super charged
@@ -165,6 +170,7 @@
 
 (load "~/.emacs.d/lsp.el")
 (load "~/.emacs.d/flymake_settings.el")
+(load "~/.emacs.d/magit.el")
 
 
 ;; Configure saves 
@@ -188,3 +194,64 @@
 
 
 (setq config-loaded-himanshu-text "Config has been loaded")
+
+
+
+
+
+
+
+(load "~/.emacs.d/treemacs.el")
+
+
+
+
+;;Typescript
+
+
+
+
+(use-package typescript-mode
+  :ensure t
+  :init
+  (define-derived-mode typescript-tsx-mode typescript-mode "tsx")
+  :config
+  (setq typescript-indent-level 2)
+  (add-hook 'typescript-mode #'subword-mode)
+  (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-tsx-mode)))
+
+;;Treesitter ; Add some typescript things to enable custom tsx mode
+(use-package tree-sitter
+  :ensure t
+  :config
+  ;; activate tree-sitter on any buffer containing code for which it has a parser available
+  (global-tree-sitter-mode)
+  ;; you can easily see the difference tree-sitter-hl-mode makes for python, ts or tsx
+  ;; by switching on and off
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+  :hook ((typescript-mode . tree-sitter-hl-mode)
+	 (typescript-tsx-mode . tree-sitter-hl-mode)))
+
+(use-package tree-sitter-langs
+  :ensure t
+  :after tree-sitter
+  :config
+  (tree-sitter-require 'tsx)
+  (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-tsx-mode . tsx)))
+
+(use-package json-mode
+  :ensure t)
+
+;;HideShow settings
+(add-hook 'hs-minor-mode-hook (lambda ()
+                               (setq hs-allow-nesting t)))
+
+
+
+;;ProgMode hooks
+(add-hook 'prog-mode-hook (lambda ()
+			    (hs-minor-mode)
+			    (eglot-ensure)))
+
+
+;;Python use pylint with pyright for complete experience
