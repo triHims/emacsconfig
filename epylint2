@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+import re
+import sys
+from subprocess import Popen, PIPE
+
+p = Popen(f"pylint -f parseable -r n {sys.argv[1]}", shell=True, stdout=PIPE).stdout
+
+for line in p.readlines():
+    match = re.search(r"\[([WE])(, (.+?))?\]", line.decode())
+    if match:
+        kind = match.group(1)
+        func = match.group(3)
+
+        if kind == "W":
+            msg = "Warning"
+        else:
+            msg = "Error"
+
+        if func:
+            line = re.sub(r"\[([WE])(, (.+?))?\]",
+                          f"{msg} ({func}):", line.decode())
+        else:
+            line = re.sub(r"\[([WE])?\]", f"{msg}:", line.decode())
+    print(line.strip())
+
+p.close()
