@@ -6,3 +6,7 @@ auto-save-list/
 .cache
 eshell
 transient
+eln-cache/
+history
+recentf
+places
