@@ -34,6 +34,11 @@
 	     :ensure t
 	     )
 
+;;Emacs config path
+(setq local-abs-config-path "~/.config/emacs/")
+
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -81,11 +86,11 @@
 (setq ring-bell-function 'ignore)
 
 ;;Load keys bindings
-(load "~/.emacs.d/keybindings.el")
+(load (concat local-abs-config-path "keybindings.el"))
 
 ;;Load misc functions 
 
-(load "~/.emacs.d/extra_functions.el")
+(load (concat local-abs-config-path "extra_functions.el"))
 
 
 
@@ -169,9 +174,9 @@
 (advice-add 'corfu--teardown :after 'evil-normalize-keymaps)
 
 
-(load "~/.emacs.d/lsp.el")
-(load "~/.emacs.d/flymake_settings.el")
-(load "~/.emacs.d/magit.el")
+(load (concat local-abs-config-path "lsp.el"))
+(load (concat local-abs-config-path "flymake_settings.el") )
+(load (concat local-abs-config-path "magit.el"))
 
 
 ;; Configure saves 
@@ -202,7 +207,7 @@
 
 
 
-(load "~/.emacs.d/treemacs.el")
+(load (concat local-abs-config-path "treemacs.el"))
 
 
 
