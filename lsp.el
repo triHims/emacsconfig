@@ -18,5 +18,9 @@
   :defer t
   :config
   (setq read-process-output-max (* 1024 1024))
-  (push :documentHighlightProvider eglot-ignored-server-capabilities))
+  (push :documentHighlightProvider eglot-ignored-server-capabilities)
+  ;;Adding groovy server
+  (add-to-list 'eglot-server-programs `(groovy-mode . ( ,local-java8-path "-jar"  ,(expand-file-name (concat local-abs-config-path local-abs-custom-utils "groovy-language-server/groovy-language-server-all.jar")))))
+  )
 
+;; 

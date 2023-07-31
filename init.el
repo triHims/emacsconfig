@@ -1,3 +1,13 @@
+;;Emacs config path
+(setq local-abs-config-path "~/.config/emacs/")
+(setq local-abs-custom-utils "custom-utils/")
+(setq local-abs-custom-packages "custom-packages/")
+(setq local-java11-path "/Volumes/WORK/ProgramFiles/jdk-11.0.19+7/Contents/Home/bin/java")
+(setq local-jdk11-path "/Volumes/WORK/ProgramFiles/jdk-11.0.19+7/Contents/Home/bin/")
+(setq local-java8-path "/Volumes/WORK/ProgramFiles/amazon-corretto-8.jdk/Contents/Home/bin/java")
+(setq local-jdk8-path "/Volumes/WORK/ProgramFiles/amazon-corretto-8.jdk/Contents/Home/bin/")
+
+
 ;; Set up package.el to work with MELPA
 (require 'package)
 (add-to-list 'package-archives
@@ -11,13 +21,12 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(use-package evil
-	     :ensure t
-	     :init
-	     (evil-mode 1)
-	     (evil-select-search-module 'evil-search-module 'evil-search)
-	     (setq evil-undo-system 'undo-redo)
-	     )
+;;Load evil custom
+(add-to-list 'load-path (concat local-abs-config-path local-abs-custom-packages "evil"))
+(require 'evil)
+(evil-select-search-module 'evil-search-module 'evil-search)
+(setq evil-undo-system 'undo-redo)
+
 
 
 (use-package evil-surround
@@ -34,10 +43,6 @@
 	     :ensure t
 	     )
 
-;;Emacs config path
-(setq local-abs-config-path "~/.config/emacs/")
-
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -49,13 +54,13 @@
    '("9abe2b502db3ed511fea7ab84b62096ba15a3a71cdb106fd989afa179ff8ab8d" default))
  '(org-export-backends '(ascii html icalendar latex odt md))
  '(package-selected-packages
-   '(coverlay json-mode typescript-mode typescript tsx-mode tree-sitter-langs tree-sitter treemacs-evil treemacs magit evil-surround monokai-theme eglot yasnippet-snippets yasnippet corfu ido-vertical-mode use-package which-key evil)))
+   '(eglot grails-mode groovy-mode coverlay json-mode typescript-mode typescript tsx-mode tree-sitter-langs tree-sitter treemacs-evil treemacs magit evil-surround monokai-theme yasnippet-snippets yasnippet corfu ido-vertical-mode use-package which-key)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 126 :width normal :foundry "UKWN" :family "Iosevka")))))
+ '(default ((t (:inherit nil :stipple nil :background "#272822" :foreground "#F8F8F2" :inverse-video nil :box nil :strike-through nil :extend nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Andale Mono")))))
 
 
 ;;Enable recent files
@@ -261,3 +266,14 @@
 
 
 ;;Python use pylint with pyright for complete experience
+
+;;Groovy modes
+
+(use-package groovy-mode
+  :ensure t
+)
+(use-package grails-mode
+  :ensure t
+)
+;; set evil mode at last
+(evil-mode 1)

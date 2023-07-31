@@ -1,5 +1,6 @@
 ;;Evil keybindings
 
+;; 
 (evil-set-leader nil (kbd "SPC"))
 (evil-global-set-key 'normal (kbd "<leader>bb") 'ibuffer)
 
