@@ -223,3 +223,10 @@ Date: %ad
   :config (temp-magit-test-fun)
   :defer t
   )
+
+
+
+;; Set keys 
+
+(global-set-key (kbd "C-c g") 'magit-dispatch)
+(global-set-key (kbd "C-c f") 'magit-file-dispatch)

@@ -11,8 +11,9 @@ ido.last
 ido.last~
 eln-cache
 url/cache/himanshu/https/org/gnu/www
-history
 places
 projects
 recentf
 tramp
+eln-cache/
+.lsp.el.swp

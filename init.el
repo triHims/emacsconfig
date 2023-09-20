@@ -1,3 +1,13 @@
+;;Emacs config path
+(setq local-abs-config-path "~/.config/emacs/")
+(setq local-abs-custom-utils "custom-utils/")
+(setq local-abs-custom-packages "custom-packages/")
+(setq local-java11-path "/Volumes/WORK/ProgramFiles/jdk-11.0.19+7/Contents/Home/bin/java")
+(setq local-jdk11-path "/Volumes/WORK/ProgramFiles/jdk-11.0.19+7/Contents/Home/bin/")
+(setq local-java8-path "/Volumes/WORK/ProgramFiles/amazon-corretto-8.jdk/Contents/Home/bin/java")
+(setq local-jdk8-path "/Volumes/WORK/ProgramFiles/amazon-corretto-8.jdk/Contents/Home/bin/")
+
+
 ;; Set up package.el to work with MELPA
 (require 'package)
 (add-to-list 'package-archives
@@ -11,13 +21,12 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(use-package evil
-	     :ensure t
-	     :init
-	     (evil-mode 1)
-	     (evil-select-search-module 'evil-search-module 'evil-search)
-	     (setq evil-undo-system 'undo-redo)
-	     )
+;;Load evil custom
+(add-to-list 'load-path (concat local-abs-config-path local-abs-custom-packages "evil"))
+(require 'evil)
+(evil-select-search-module 'evil-search-module 'evil-search)
+(setq evil-undo-system 'undo-redo)
+
 
 
 (use-package evil-surround
@@ -34,6 +43,7 @@
 	     :ensure t
 	     )
 
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -42,6 +52,7 @@
  '(custom-enabled-themes '(monokai))
  '(custom-safe-themes
    '("9abe2b502db3ed511fea7ab84b62096ba15a3a71cdb106fd989afa179ff8ab8d" default))
+ '(org-export-backends '(ascii html icalendar latex odt md))
  '(package-selected-packages
    '(pyvenv yasnippets to coverlay json-mode typescript-mode typescript tsx-mode tree-sitter-langs tree-sitter treemacs-evil treemacs magit evil-surround monokai-theme eglot yasnippet-snippets yasnippet corfu ido-vertical-mode use-package which-key evil))
  '(safe-local-variable-values
@@ -58,7 +69,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 128 :width normal :foundry "UKWN" :family "Iosevka")))))
+ '(default ((t (:inherit nil :stipple nil :background "#272822" :foreground "#F8F8F2" :inverse-video nil :box nil :strike-through nil :extend nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Andale Mono")))))
 
 
 ;;Enable recent files
@@ -89,11 +100,11 @@
 (setq ring-bell-function 'ignore)
 
 ;;Load keys bindings
-(load "~/.emacs.d/keybindings.el")
+(load (concat local-abs-config-path "keybindings.el"))
 
 ;;Load misc functions 
 
-(load "~/.emacs.d/extra_functions.el")
+(load (concat local-abs-config-path "extra_functions.el"))
 
 
 
@@ -181,16 +192,16 @@
 (advice-add 'corfu--teardown :after 'evil-normalize-keymaps)
 
 
+;; yasnippets Config in lsp.el
+;; eglot config , yasnippet config
+(load (concat local-abs-config-path "lsp.el"))
+(load (concat local-abs-config-path "flymake_settings.el") )
+(load (concat local-abs-config-path "magit.el"))
 
 
 
 (load "~/.emacs.d/hooks.el")
 (load "~/.emacs.d/flymake_settings.el")
-;; yasnippets Config in lsp.el
-;; eglot config , yasnippet config
-(load "~/.emacs.d/magit.el")
-(load "~/.emacs.d/lsp.el")
-
 ;; Configure saves 
 	
 (defvar --backup-directory (concat user-emacs-directory ".backups"))
@@ -228,7 +239,7 @@
 
 
 
-(load "~/.emacs.d/treemacs.el")
+(load (concat local-abs-config-path "treemacs.el"))
 
 
 
@@ -279,3 +290,18 @@
 ;;Dired settings
 
 (setq dired-kill-when-opening-new-dired-buffer t)
+;;Groovy modes
+
+(use-package groovy-mode
+  :ensure t
+)
+(use-package grails-mode
+  :ensure t
+)
+;; set evil mode at last
+(evil-mode 1)
+
+;;Setup extra project markers
+(use-package project
+ :init
+ (setq project-vc-extra-root-markers '(".dir-locals.el")))

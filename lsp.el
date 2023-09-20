@@ -26,9 +26,13 @@
   :hook (python-mode . enable-flymake-with-eglot)
   :config
   (setq read-process-output-max (* 1024 1024))
-  (push :documentHighlightProvider eglot-ignored-server-capabilities))
+  (push :documentHighlightProvider eglot-ignored-server-capabilities)
+  ;;Adding groovy server
+  (add-to-list 'eglot-server-programs `(groovy-mode . ( ,local-java8-path "-jar"  ,(expand-file-name (concat local-abs-config-path local-abs-custom-utils "groovy-language-server/groovy-language-server-all.jar")))))
+  )
 
 (setq-default eglot-workspace-configuration
                 '((:pylsp . (:configurationSources ["flake8"] :plugins (:pycodestyle (:enabled nil) :mccabe (:enabled nil) :flake8 (:enabled t))))))
 
 ;; Eglot is started with prog-mode hook, see hooks.el
+;; 
