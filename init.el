@@ -43,7 +43,16 @@
  '(custom-safe-themes
    '("9abe2b502db3ed511fea7ab84b62096ba15a3a71cdb106fd989afa179ff8ab8d" default))
  '(package-selected-packages
-   '(coverlay json-mode typescript-mode typescript tsx-mode tree-sitter-langs tree-sitter treemacs-evil treemacs magit evil-surround monokai-theme eglot yasnippet-snippets yasnippet corfu ido-vertical-mode use-package which-key evil)))
+   '(pyvenv yasnippets to coverlay json-mode typescript-mode typescript tsx-mode tree-sitter-langs tree-sitter treemacs-evil treemacs magit evil-surround monokai-theme eglot yasnippet-snippets yasnippet corfu ido-vertical-mode use-package which-key evil))
+ '(safe-local-variable-values
+   '((eval setq-local exec-path
+	   (cons _tempvenvPath exec-path))
+     (eval setq-local process-environment
+	   (cons
+	    (concat "PATH=" _tempvenvPath ":"
+		    (getenv "PATH"))
+	    (copy-sequence process-environment)))
+     (eval setq-local _tempvenvPath "/run/media/himanshu/New_Volume/Projects/Python/gig-enrich-data-apollo-storeleads/app/venv/bin"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -98,6 +107,10 @@
 ;;Enable narrow and widen C-x n n and C-x n w
 (put 'narrow-to-region 'disabled nil)
 
+
+
+;;Yes no everywhere
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 
 (use-package corfu
@@ -168,10 +181,15 @@
 (advice-add 'corfu--teardown :after 'evil-normalize-keymaps)
 
 
-(load "~/.emacs.d/lsp.el")
-(load "~/.emacs.d/flymake_settings.el")
-(load "~/.emacs.d/magit.el")
 
+
+
+(load "~/.emacs.d/hooks.el")
+(load "~/.emacs.d/flymake_settings.el")
+;; yasnippets Config in lsp.el
+;; eglot config , yasnippet config
+(load "~/.emacs.d/magit.el")
+(load "~/.emacs.d/lsp.el")
 
 ;; Configure saves 
 	
@@ -190,6 +208,15 @@
       auto-save-timeout 20              ; number of seconds idle time before auto-save (default: 30)
       auto-save-interval 200            ; number of keystrokes between auto-saves (default: 300)
       )
+(defvar user-temporary-file-directory
+  (concat --backup-directory "/" "temporary/"))
+(if (not (file-exists-p user-temporary-file-directory))
+        (make-directory user-temporary-file-directory t))
+
+(setq auto-save-list-file-prefix
+      (concat user-temporary-file-directory ".auto-saves-"))
+(setq auto-save-file-name-transforms
+      `((".*" ,user-temporary-file-directory t)))     
 
 
 
@@ -242,16 +269,13 @@
 (use-package json-mode
   :ensure t)
 
-;;HideShow settings
-(add-hook 'hs-minor-mode-hook (lambda ()
-                               (setq hs-allow-nesting t)))
-
-
-
-;;ProgMode hooks
-(add-hook 'prog-mode-hook (lambda ()
-			    (hs-minor-mode)
-			    (eglot-ensure)))
 
 
 ;;Python use pylint with pyright for complete experience
+
+
+
+
+;;Dired settings
+
+(setq dired-kill-when-opening-new-dired-buffer t)

@@ -1,11 +1,18 @@
 ;;Setup lsp and then work to the language
+(defun enable-flymake-with-eglot ()
+  "Enable flymake with eglot for linting"
+  (setq eglot-stay-out-of '(flymake))
+  )
 
 
+;; To make your snippets do yas-new-snippet 
+;; 0$ last place where your cursor ends up
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode
   :hook (prog-mode . yas-minor-mode)
   :config
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
   (yas-reload-all))
 
 (use-package yasnippet-snippets
@@ -16,7 +23,12 @@
 (use-package eglot
   :ensure t
   :defer t
+  :hook (python-mode . enable-flymake-with-eglot)
   :config
   (setq read-process-output-max (* 1024 1024))
   (push :documentHighlightProvider eglot-ignored-server-capabilities))
 
+(setq-default eglot-workspace-configuration
+                '((:pylsp . (:configurationSources ["flake8"] :plugins (:pycodestyle (:enabled nil) :mccabe (:enabled nil) :flake8 (:enabled t))))))
+
+;; Eglot is started with prog-mode hook, see hooks.el

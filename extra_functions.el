@@ -13,6 +13,7 @@
     (cons (funcall fn common (car lst) (cadr lst))
           (custom-apply-to-pairs fn common (cddr lst)))))
 
+;;Deprecated
 (defun pyrightconfig-write (virtualenv)
   "For python project use this function with pyright to detect virtualenv my making pyrightconfig.json"
   (interactive "DEnv: ")
@@ -45,3 +46,12 @@
     ;; the JSON payload, then flushes that content to final `pyrightconfig.json'
     ;; location
     (with-temp-file out-file (insert out-contents))))
+
+
+
+
+
+
+
+
+
