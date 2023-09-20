@@ -10,3 +10,7 @@ eln-cache/
 history
 recentf
 places
+.lsp.el.swp
+history
+ido.last
+projects

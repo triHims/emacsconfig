@@ -54,7 +54,9 @@
    '("9abe2b502db3ed511fea7ab84b62096ba15a3a71cdb106fd989afa179ff8ab8d" default))
  '(org-export-backends '(ascii html icalendar latex odt md))
  '(package-selected-packages
-   '(eglot grails-mode groovy-mode coverlay json-mode typescript-mode typescript tsx-mode tree-sitter-langs tree-sitter treemacs-evil treemacs magit evil-surround monokai-theme yasnippet-snippets yasnippet corfu ido-vertical-mode use-package which-key)))
+   '(eglot grails-mode groovy-mode coverlay json-mode typescript-mode typescript tsx-mode tree-sitter-langs tree-sitter treemacs-evil treemacs magit evil-surround monokai-theme yasnippet-snippets yasnippet corfu ido-vertical-mode use-package which-key))
+ '(safe-local-variable-values
+   '((eval remove-hook 'flymake-diagnostic-functions 'eglot-flymake-backend))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -277,3 +279,8 @@
 )
 ;; set evil mode at last
 (evil-mode 1)
+
+;;Setup extra project markers
+(use-package project
+ :init
+ (setq project-vc-extra-root-markers '(".dir-locals.el")))
