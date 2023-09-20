@@ -200,8 +200,8 @@
 
 
 
-(load "~/.emacs.d/hooks.el")
-(load "~/.emacs.d/flymake_settings.el")
+(load (concat local-abs-config-path "hooks.el"))
+(load (concat local-abs-config-path "flymake_settings.el"))
 ;; Configure saves 
 	
 (defvar --backup-directory (concat user-emacs-directory ".backups"))
@@ -293,9 +293,6 @@
 ;;Groovy modes
 
 (use-package groovy-mode
-  :ensure t
-)
-(use-package grails-mode
   :ensure t
 )
 ;; set evil mode at last
