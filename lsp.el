@@ -12,7 +12,6 @@
   :diminish yas-minor-mode
   :hook ((org-mode prog-mode ) . yas-minor-mode)
   :config
-  (setq yas-snippet-dirs `(,(concat local-abs-config-path "snippets" )))
   (yas-reload-all))
 
 (use-package yasnippet-snippets
