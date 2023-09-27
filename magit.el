@@ -82,7 +82,11 @@ Date: %ad
 (evil-define-key 'normal magit-mode-map
   ";gg" 'magit-process
   "J" 'magit-section-forward
-  "K" 'magit-section-backward)
+  "K" 'magit-section-backward
+  (kbd "C-n" ) 'magit-section-forward
+  (kbd "C-p" ) 'magit-section-backward
+  "gJ" 'magit-status-jump
+  )
 
 ;; This is a tricky binding -- depending on where your cursor is in the magit status view, you may have
 ;; the magit-file-section-map activated. evil-define-key doesn't work with this keymap.
@@ -215,6 +219,7 @@ Date: %ad
   (call-interactively 'magit-status)
   (magit-jump-to-unstaged))
 (message "Custom magit fn done.")
+(add-hook 'magit-mode-hook 'evil-normal-state)
 )
 
 

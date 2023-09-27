@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: react-useeffect
+# key: rue>
+# --
+useEffect(()=>{
+	${1:}
+	},[${2:}])$0
