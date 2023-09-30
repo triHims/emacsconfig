@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: react-usestate
-# key: rus>
+# key: <rus
 # --
 
 const [${1:name},set$1] = useState(${2:""})$0
