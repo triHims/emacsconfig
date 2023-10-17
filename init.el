@@ -54,7 +54,7 @@
    '("9abe2b502db3ed511fea7ab84b62096ba15a3a71cdb106fd989afa179ff8ab8d" default))
  '(org-export-backends '(ascii html icalendar latex odt md))
  '(package-selected-packages
-   '(pyvenv yasnippets to coverlay json-mode typescript-mode typescript tsx-mode tree-sitter-langs tree-sitter treemacs-evil treemacs magit evil-surround monokai-theme eglot yasnippet-snippets yasnippet corfu ido-vertical-mode use-package which-key evil))
+   '(markdown-mode pyvenv yasnippets to coverlay json-mode typescript-mode typescript tsx-mode tree-sitter-langs tree-sitter treemacs-evil treemacs magit evil-surround monokai-theme yasnippet-snippets yasnippet ido-vertical-mode use-package which-key evil))
  '(safe-local-variable-values
    '((eval setq-local exec-path
 	   (cons _tempvenvPath exec-path))
@@ -64,12 +64,7 @@
 		    (getenv "PATH"))
 	    (copy-sequence process-environment)))
      (eval setq-local _tempvenvPath "/run/media/himanshu/New_Volume/Projects/Python/gig-enrich-data-apollo-storeleads/app/venv/bin"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#272822" :foreground "#F8F8F2" :inverse-video nil :box nil :strike-through nil :extend nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Andale Mono")))))
+
 
 
 ;;Enable recent files
@@ -124,39 +119,39 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 
-(use-package corfu
-	     :ensure t
-  ;; Optional customizations
-  :custom
-  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  ;; (corfu-auto t)                 ;; Enable auto completion
-  ;; (corfu-separator ?\s)          ;; Orderless field separator
-  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
-  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
-  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
-  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
-  ;; (corfu-scroll-margin 5)        ;; Use scroll margin
-
-  ;; Enable Corfu only for certain modes.
-  ;; :hook ((prog-mode . corfu-mode)
-  ;;        (shell-mode . corfu-mode)
-  ;;        (eshell-mode . corfu-mode))
-
-  ;; Recommended: Enable Corfu global.
-  ;; This is recommended since Dabbrev can be used globally (M-/).
-  ;; See also `corfu-excluded-modes'.
-  :bind
-  (:map corfu-map
-	("C-n" . corfu-next)
-	("C-p" . corfu-previous)
-	("<escape>" . corfu-quit)
-	("<return>" . corfu-insert)
-	("M-d" . corfu-info-documentation)
-	("M-l" . corfu-info-location)
-	)
-  :init
-  (global-corfu-mode))
+;;(use-package corfu
+	     ;;:ensure t
+  ;;;; Optional customizations
+  ;;:custom
+  ;;(corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  ;;;; (corfu-auto t)                 ;; Enable auto completion
+  ;;;; (corfu-separator ?\s)          ;; Orderless field separator
+  ;;;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  ;;;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  ;;;; (corfu-preview-current nil)    ;; Disable current candidate preview
+  ;;;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+  ;;;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  ;;;; (corfu-scroll-margin 5)        ;; Use scroll margin
+;;
+  ;;;; Enable Corfu only for certain modes.
+  ;;;; :hook ((prog-mode . corfu-mode)
+  ;;;;        (shell-mode . corfu-mode)
+  ;;;;        (eshell-mode . corfu-mode))
+;;
+  ;;;; Recommended: Enable Corfu global.
+  ;;;; This is recommended since Dabbrev can be used globally (M-/).
+  ;;;; See also `corfu-excluded-modes'.
+  ;;:bind
+  ;;(:map corfu-map
+	;;("C-n" . corfu-next)
+	;;("C-p" . corfu-previous)
+	;;("<escape>" . corfu-quit)
+	;;("<return>" . corfu-insert)
+	;;("M-d" . corfu-info-documentation)
+	;;("M-l" . corfu-info-location)
+	;;)
+  ;;:init
+  ;;(global-corfu-mode))
 
 ;; A few more useful configurations...
 (use-package emacs
@@ -187,10 +182,14 @@
 
 ;;This tweak makes corfu plugins have precendence over evil ,
 ;; Then we simply make triggers to normalize maps
-(evil-make-overriding-map corfu-map)
-(advice-add 'corfu--setup :after 'evil-normalize-keymaps)
-(advice-add 'corfu--teardown :after 'evil-normalize-keymaps)
+;;(evil-make-overriding-map corfu-map)
+;;(advice-add 'corfu--setup :after 'evil-normalize-keymaps)
+;;(advice-add 'corfu--teardown :after 'evil-normalize-keymaps)
 
+;; Install markdown-mode
+(use-package markdown-mode
+  :ensure t
+)
 
 ;; yasnippets Config in lsp.el
 ;; eglot config , yasnippet config
@@ -201,7 +200,6 @@
 
 
 (load (concat local-abs-config-path "hooks.el"))
-(load (concat local-abs-config-path "flymake_settings.el"))
 ;; Configure saves 
 	
 (defvar --backup-directory (concat user-emacs-directory ".backups"))
@@ -232,8 +230,6 @@
 
 
 (setq config-loaded-himanshu-text "Config has been loaded")
-
-
 
 
 
@@ -292,9 +288,6 @@
 (setq dired-kill-when-opening-new-dired-buffer t)
 ;;Groovy modes
 
-(use-package groovy-mode
-  :ensure t
-)
 ;; set evil mode at last
 (evil-mode 1)
 
@@ -302,3 +295,9 @@
 (use-package project
  :init
  (setq project-vc-extra-root-markers '(".dir-locals.el")))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#272822" :foreground "#F8F8F2" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 128 :width normal :foundry "DAMA" :family "YaHei Consolas Hybrid")))))
