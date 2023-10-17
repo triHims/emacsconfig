@@ -7,6 +7,38 @@
 (setq local-java8-path "/Volumes/WORK/ProgramFiles/amazon-corretto-8.jdk/Contents/Home/bin/java")
 (setq local-jdk8-path "/Volumes/WORK/ProgramFiles/amazon-corretto-8.jdk/Contents/Home/bin/")
 
+;;Internal configs
+;; Custom file for transient system settings
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(load custom-file 'noerror)
+;; Configure saves 
+	
+(defvar --backup-directory (concat user-emacs-directory ".backups"))
+(if (not (file-exists-p --backup-directory))
+        (make-directory --backup-directory t))
+(setq backup-directory-alist `(("." . ,--backup-directory)))
+(setq make-backup-files t               ; backup of a file the first time it is saved.
+      backup-by-copying t               ; don't clobber symlinks
+      version-control t                 ; version numbers for backup files
+      delete-old-versions t             ; delete excess backup files silently
+      delete-by-moving-to-trash t
+      kept-old-versions 6               ; oldest versions to keep when a new numbered backup is made (default: 2)
+      kept-new-versions 9               ; newest versions to keep when a new numbered backup is made (default: 2)
+      auto-save-default t               ; auto-save every buffer that visits a file
+      auto-save-timeout 20              ; number of seconds idle time before auto-save (default: 30)
+      auto-save-interval 200            ; number of keystrokes between auto-saves (default: 300)
+      )
+(defvar user-temporary-file-directory
+  (concat --backup-directory "/" "temporary/"))
+(if (not (file-exists-p user-temporary-file-directory))
+        (make-directory user-temporary-file-directory t))
+
+(setq auto-save-list-file-prefix
+      (concat user-temporary-file-directory ".auto-saves-"))
+(setq auto-save-file-name-transforms
+      `((".*" ,user-temporary-file-directory t)))     
+
+
 
 ;; Set up package.el to work with MELPA
 (require 'package)
@@ -44,32 +76,6 @@
 	     )
 
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(monokai))
- '(custom-safe-themes
-   '("9abe2b502db3ed511fea7ab84b62096ba15a3a71cdb106fd989afa179ff8ab8d" default))
- '(org-export-backends '(ascii html icalendar latex odt md))
- '(package-selected-packages
-   '(pyvenv yasnippets to coverlay json-mode typescript-mode typescript tsx-mode tree-sitter-langs tree-sitter treemacs-evil treemacs magit evil-surround monokai-theme eglot yasnippet-snippets yasnippet corfu ido-vertical-mode use-package which-key evil))
- '(safe-local-variable-values
-   '((eval setq-local exec-path
-	   (cons _tempvenvPath exec-path))
-     (eval setq-local process-environment
-	   (cons
-	    (concat "PATH=" _tempvenvPath ":"
-		    (getenv "PATH"))
-	    (copy-sequence process-environment)))
-     (eval setq-local _tempvenvPath "/run/media/himanshu/New_Volume/Projects/Python/gig-enrich-data-apollo-storeleads/app/venv/bin"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#272822" :foreground "#F8F8F2" :inverse-video nil :box nil :strike-through nil :extend nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Andale Mono")))))
 
 
 ;;Enable recent files
@@ -202,34 +208,6 @@
 
 (load (concat local-abs-config-path "hooks.el"))
 (load (concat local-abs-config-path "flymake_settings.el"))
-;; Configure saves 
-	
-(defvar --backup-directory (concat user-emacs-directory ".backups"))
-(if (not (file-exists-p --backup-directory))
-        (make-directory --backup-directory t))
-(setq backup-directory-alist `(("." . ,--backup-directory)))
-(setq make-backup-files t               ; backup of a file the first time it is saved.
-      backup-by-copying t               ; don't clobber symlinks
-      version-control t                 ; version numbers for backup files
-      delete-old-versions t             ; delete excess backup files silently
-      delete-by-moving-to-trash t
-      kept-old-versions 6               ; oldest versions to keep when a new numbered backup is made (default: 2)
-      kept-new-versions 9               ; newest versions to keep when a new numbered backup is made (default: 2)
-      auto-save-default t               ; auto-save every buffer that visits a file
-      auto-save-timeout 20              ; number of seconds idle time before auto-save (default: 30)
-      auto-save-interval 200            ; number of keystrokes between auto-saves (default: 300)
-      )
-(defvar user-temporary-file-directory
-  (concat --backup-directory "/" "temporary/"))
-(if (not (file-exists-p user-temporary-file-directory))
-        (make-directory user-temporary-file-directory t))
-
-(setq auto-save-list-file-prefix
-      (concat user-temporary-file-directory ".auto-saves-"))
-(setq auto-save-file-name-transforms
-      `((".*" ,user-temporary-file-directory t)))     
-
-
 
 (setq config-loaded-himanshu-text "Config has been loaded")
 
