@@ -14,14 +14,18 @@
 ;; LSP keybindings
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>lr") 'lsp-bridge-rename)
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>lF") 'lsp-bridge-code-format)
-(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>gd") 'lsp-bridge-find-def)
-(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>gD") 'lsp-bridge-find-impl)
-(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>gr") 'lsp-bridge-find-references)
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "gd") 'lsp-bridge-find-def)
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "gD") 'lsp-bridge-find-impl)
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>gD") 'lsp-bridge-find-impl-other-window)
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "gr") 'lsp-bridge-find-references)
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "K") 'lsp-bridge-popup-documentation)
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>ld") 'lsp-bridge-diagnostic-list)
 
 (evil-define-key 'insert lsp-bridge-mode-map (kbd "C-M-i") 'lsp-bridge-popup-complete-menu)
 
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "[d") 'lsp-bridge-diagnostic-jump-prev)
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "]d") 'lsp-bridge-diagnostic-jump-next)
+(add-hook 'lsp-bridge-mode-hook #'evil-normalize-keymaps)
 
 ;; ACM Bindings
 ;;(define-key acm-mode-map (kbd "C-p") 'acm-select-prev) ; "K" was bound to magit-file-untrack.
@@ -29,7 +33,6 @@
 
 (add-hook 'acm-mode-hook
           (lambda ()
-	    (message "adding to acm-mode-map")
 	    (evil-define-key 'insert acm-mode-map (kbd "C-p") 'acm-select-prev)
             (evil-define-key 'insert acm-mode-map (kbd "C-n") 'acm-select-next)
      (define-key acm-mode-map (kbd "C-p") 'acm-select-prev)
@@ -46,5 +49,4 @@
 
 (evil-define-key 'motion Buffer-menu-mode-map (kbd "<return>") 'Buffer-menu-view)
 
-
-
+(global-set-key (kbd "C-x C-b") 'ibuffer)

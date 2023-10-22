@@ -1,0 +1,14 @@
+{
+  "name": "javascript",
+  "languageId": "javascript",
+  "command": [
+    "typescript-language-server",
+    "--stdio"
+  ],
+  "initializationOptions": {
+          "plugins": [{
+                    "name": "typescript-eslint-language-service"
+                        }]
+    },
+  "settings": {}
+}

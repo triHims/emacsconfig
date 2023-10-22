@@ -20,6 +20,8 @@
 (yas-global-mode 1)
 
 (require 'lsp-bridge)
+(setq lsp-bridge-user-multiserver-dir (concat local-abs-config-path "lsp-multiserver"))
+(setq lsp-bridge-user-langserver-dir (concat local-abs-config-path "lsp-langserver"))
 (global-lsp-bridge-mode)
 (setq lsp-bridge-complete-manually t)
 (setq acm-enable-tabnine nil)
