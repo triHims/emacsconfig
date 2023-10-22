@@ -1,0 +1,15 @@
+{
+  "name": "typescriptreact",
+  "languageId": "typescriptreact",
+  "command": [
+    "typescript-language-server",
+    "--stdio"
+  ],
+  "settings": {},
+
+  "initializationOptions": {
+          "plugins": [{
+                    "name": "typescript-eslint-language-service"
+                        }]
+    }
+}

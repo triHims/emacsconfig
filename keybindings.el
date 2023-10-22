@@ -21,5 +21,4 @@
 
 (evil-define-key 'motion Buffer-menu-mode-map (kbd "<return>") 'Buffer-menu-view)
 
-
-
+(global-set-key (kbd "C-x C-b") 'ibuffer)
