@@ -11,6 +11,14 @@
 ;; Custom file for transient system settings
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror)
+
+
+;;Load os vars
+(cond
+ ((string-prefix-p "darwin" (symbol-name system-type)) (load (concat user-emacs-directory "darwin.el")))
+ ((string-prefix-p "gnu" (symbol-name system-type)) (message "We are in GNU"))
+ )
+
 ;; Configure saves 
 	
 (defvar --backup-directory (concat user-emacs-directory ".backups"))
@@ -59,7 +67,20 @@
 (evil-select-search-module 'evil-search-module 'evil-search)
 (setq evil-undo-system 'undo-redo)
 
+(setq evil-split-window-below t)
+(setq evil-vsplit-window-right t)
+(setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+(setq evil-want-keybinding nil)
 
+(use-package goto-chg
+  :ensure t)
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init)
+  )
 
 (use-package evil-surround
   :ensure t
@@ -278,3 +299,15 @@
 (use-package project
  :init
  (setq project-vc-extra-root-markers '(".dir-locals.el")))
+
+
+
+
+;; ORG mode more settings
+
+(use-package org-bullets
+  :ensure t
+  :after
+  org-mode
+  :config
+  (org-bullets-mode 1))

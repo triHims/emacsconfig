@@ -55,3 +55,25 @@
 
 
 
+(global-set-key
+ (kbd "C-<f6>")
+ (lambda (arg) (interactive "P")
+   (let ((separator (pcase arg
+                      ('(4) "-")
+                      (0 "/")
+                      (_ ""))))
+     (insert
+      (format-time-string (concat "%Y" separator "%m" separator "%d"))))))
+
+(global-set-key
+ (kbd "C-S-<f6>")
+ (lambda (arg) (interactive "P")
+   (let ((separator (pcase arg
+                      ('(4) "-")
+                      (0 "/")
+                      (_ ""))))
+     (insert
+      (format-time-string (concat "%Y" separator "%m" separator "%d" separator "%I" separator "%M" separator "%S" "%p"))))))
+
+
+
