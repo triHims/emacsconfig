@@ -305,7 +305,7 @@
 
 
 
-;; ORG mode more settings
+;; Org mode more settings
 
 (use-package org-bullets
   :ensure t
