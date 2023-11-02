@@ -77,3 +77,11 @@
 
 
 
+
+
+(defun zen-mode-toggle ()
+  "Zen Mode Toggle"
+  (tool-bar-mode 'toggle)
+  (menu-bar-mode 'toggle)
+  (scroll-bar-mode 'toggle))
+
