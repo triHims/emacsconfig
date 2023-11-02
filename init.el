@@ -16,7 +16,7 @@
 ;;Load os vars
 (cond
  ((string-prefix-p "darwin" (symbol-name system-type)) (load (concat user-emacs-directory "darwin.el")))
- ((string-prefix-p "gnu" (symbol-name system-type)) (message "We are in GNU"))
+ ((string-prefix-p "gnu" (symbol-name system-type)) (load (concat user-emacs-directory "linux.el")))
  )
 
 ;; Configure saves 
@@ -308,6 +308,14 @@
 (use-package org-bullets
   :ensure t
   :after
-  org-mode
-  :config
-  (org-bullets-mode 1))
+  org
+  :hook
+  (org-mode . org-bullets-mode)
+  )
+
+
+;; For js install Prettier
+
+(use-package prettier
+  :ensure t
+  )

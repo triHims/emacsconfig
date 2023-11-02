@@ -14,6 +14,7 @@
 ;; LSP keybindings
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>lr") 'lsp-bridge-rename)
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>lF") 'lsp-bridge-code-format)
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>la") 'lsp-bridge-code-action)
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "gd") 'lsp-bridge-find-def)
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "gD") 'lsp-bridge-find-impl)
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>gD") 'lsp-bridge-find-impl-other-window)
