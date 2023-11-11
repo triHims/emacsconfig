@@ -321,3 +321,12 @@
 (use-package prettier
   :ensure t
   )
+
+
+
+(zen-mode-toggle)
+
+;;line numbers
+(global-display-line-numbers-mode 1)
+(setq display-line-numbers-type 'relative)
+
