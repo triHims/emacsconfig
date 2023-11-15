@@ -35,3 +35,5 @@
 
 ;; Eglot is started with prog-mode hook, see hooks.el
 ;; 
+
+;;Python use pylint with pyright for complete experience
