@@ -117,13 +117,20 @@
 (fido-vertical-mode 1)
 
 (use-package ido-vertical-mode
-	     :ensure t
-	     :init
-	     (ido-vertical-mode 1))
-(setq ido-verticle-define-keys `C-n-and-C-p-only)
+  :ensure t
+  :init
+  (setq ido-vertical-define-keys nil)
+  (ido-vertical-mode 1)
+  )
+
+(add-hook 'ido-setup-hook (lambda ()
+			    (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+			    (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
+			    )
+	  )
+
 
 ;; Disable emacs bell
-
 (setq ring-bell-function 'ignore)
 
 ;;Load keys bindings
@@ -329,3 +336,26 @@
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
 
+
+
+
+(defun display-first-60-char (args)
+  "This function displays first 60 chars of the buffer"
+  (interactive "P")
+  (save-restriction 
+    (widen)
+    (let (
+	  (buf-st 1)
+	  (buf-end (if (> (point-max) 60) 
+		       60
+		     (point-max)
+		     )
+		   )
+	  )
+
+      (message "%d %d" buf-st buf-end)
+      (message (buffer-substring-no-properties buf-st buf-end))
+      )
+
+    )
+  )
