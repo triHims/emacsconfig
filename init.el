@@ -337,25 +337,8 @@
 (setq display-line-numbers-type 'relative)
 
 
-
-
-(defun display-first-60-char (args)
-  "This function displays first 60 chars of the buffer"
-  (interactive "P")
-  (save-restriction 
-    (widen)
-    (let (
-	  (buf-st 1)
-	  (buf-end (if (> (point-max) 60) 
-		       60
-		     (point-max)
-		     )
-		   )
-	  )
-
-      (message "%d %d" buf-st buf-end)
-      (message (buffer-substring-no-properties buf-st buf-end))
-      )
-
-    )
+;;Cider for clojure
+(use-package cider
+  :ensure t
+  :pin melpa-stable
   )
