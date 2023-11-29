@@ -51,3 +51,6 @@
 (evil-define-key 'motion Buffer-menu-mode-map (kbd "<return>") 'Buffer-menu-view)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x K") 'kill-buffer-and-window)
+
+;; Minibuffer file dired not work work properly
