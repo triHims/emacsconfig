@@ -133,12 +133,13 @@
 ;; Disable emacs bell
 (setq ring-bell-function 'ignore)
 
-;;Load keys bindings
-(load (concat local-abs-config-path "keybindings.el"))
-
 ;;Load misc functions 
 
 (load (concat local-abs-config-path "extra_functions.el"))
+
+;;Load keys bindings (load functions first to set with keybindings)
+(load (concat local-abs-config-path "keybindings.el"))
+
 
 
 
@@ -310,7 +311,6 @@
 
 
 
-
 ;; Org mode more settings
 
 (use-package org-bullets
@@ -342,3 +342,10 @@
   :ensure t
   :pin melpa-stable
   )
+
+
+;;Make native compilation silent and prune its cache
+
+(when (native-comp-available-p)
+  (setq native-comp-async-report-warnings-errors 'silent)
+  (setq native-compile-prune-cache t))
