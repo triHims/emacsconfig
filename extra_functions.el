@@ -77,11 +77,27 @@
 
 
 
-
-
 (defun zen-mode-toggle ()
   "Zen Mode Toggle"
   (tool-bar-mode 'toggle)
   (menu-bar-mode 'toggle)
   (scroll-bar-mode 'toggle))
+
+(defun find-dired-eager (filename)
+  "Does find-dired recursive using current dir with fuzzy search of keyword"
+  (interactive "MFuzzy file name - ")
+  (let
+      ((currentdir (file-name-directory buffer-file-name))
+       (args (concat "-iname \"*" filename "*\"" )))
+    (find-dired currentdir args)))
+
+
+
+(defun grep-eager (keyword)
+  "Does recursive grep with current dir"
+  (interactive "Msearch word - ")
+  (let*
+      ((currentdir (file-name-directory buffer-file-name))
+       (args (concat "find " currentdir " -type f -exec grep --color=auto -nH --null -e " keyword " \{\} +")))
+    (grep-find args)))
 

@@ -54,3 +54,12 @@
 (global-set-key (kbd "C-x K") 'kill-buffer-and-window)
 
 ;; Minibuffer file dired not work work properly
+
+
+;;files and dir
+
+
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>ff") 'find-dired-eager)
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>fF") 'find-dired)
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>fg") 'grep-eager)
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>fG") 'grep-find)
