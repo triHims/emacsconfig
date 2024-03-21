@@ -1,9 +1,10 @@
-(setq-local custom-path   '( "/Volumes/WORK/programfiles/bin" ) )
+(setq-local JAVA_HOME "/Volumes/WORK/ProgramFiles/jdk-17.0.7+7/Contents/Home")
+(setq-local custom-path   `( "/Volumes/WORK/programfiles/bin" "/Users/himanshutripathi/.local/bin" ,(concat JAVA_HOME "/bin") ) )
 
-(type-of custom-path)
 (setenv "PATH" (concat (getenv "PATH") ":" (string-join custom-path ":")))
 (setq exec-path (append exec-path custom-path))
 
+(setenv "JAVA_HOME" JAVA_HOME)
 
 
 
