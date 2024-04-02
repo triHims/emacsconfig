@@ -79,6 +79,7 @@
 
 (defun zen-mode-toggle ()
   "Zen Mode Toggle"
+  (interactive)
   (tool-bar-mode 'toggle)
   (menu-bar-mode 'toggle)
   (scroll-bar-mode 'toggle))
