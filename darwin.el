@@ -10,3 +10,7 @@
 
 (setq org-directory "/Volumes/WORK/NOTES")
 (setq org-default-notes-file (concat org-directory "/captured-notes.org"))
+
+
+
+(setq-default lsp-bridge-python-command "/Users/himanshutripathi/.pyenv/versions/lsp-bridge/bin/python")
