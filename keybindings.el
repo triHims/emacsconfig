@@ -15,12 +15,16 @@
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>lr") 'lsp-bridge-rename)
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>lF") 'lsp-bridge-code-format)
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>la") 'lsp-bridge-code-action)
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>ls") 'lsp-bridge-workspace-list-symbol-at-point)
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>lS") 'lsp-bridge-workspace-list-symbol-at-point)
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "gd") 'lsp-bridge-find-def)
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "gD") 'lsp-bridge-find-impl)
-(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>gD") 'lsp-bridge-find-impl-other-window)
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "gr") 'lsp-bridge-find-references)
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "K") 'lsp-bridge-popup-documentation)
 (evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>ld") 'lsp-bridge-diagnostic-list)
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>gd") 'lsp-bridge-find-impl-other-window)
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>gt") 'lsp-bridge-find-type-def)
+(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>gT") 'lsp-bridge-find-type-def-other-window)
 
 (evil-define-key 'insert lsp-bridge-mode-map (kbd "C-M-i") 'lsp-bridge-popup-complete-menu)
 

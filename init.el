@@ -76,6 +76,7 @@
 (setq evil-vsplit-window-right t)
 (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
 (setq evil-want-keybinding nil)
+(add-to-list 'evil-emacs-state-modes 'lsp-bridge-ref-mode) ;;Set emacs keys as default in particular modes
 
 (use-package goto-chg
   :ensure t)
