@@ -30,7 +30,7 @@
 ;;files and dir
 
 
-(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>ff") 'find-dired-eager)
-(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>fF") 'find-dired)
-(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>fg") 'grep-eager)
-(evil-define-key 'normal lsp-bridge-mode-map (kbd "<leader>fG") 'grep-find)
+(evil-global-set-key 'normal (kbd "<leader>ff") 'find-dired-eager)
+(evil-global-set-key 'normal (kbd "<leader>fF") 'find-dired)
+(evil-global-set-key 'normal (kbd "<leader>fg") 'grep-eager)
+(evil-global-set-key 'normal (kbd "<leader>fG") 'grep-find)
