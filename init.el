@@ -359,6 +359,11 @@
   :pin melpa-stable
   )
 
+(use-package evil-cleverparens
+  :ensure t
+  :pin melpa
+  )
+
 ;; Use vterm
 (use-package vterm
     :ensure t)
