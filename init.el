@@ -368,3 +368,17 @@
 ;; Use vterm
 (use-package vterm
     :ensure t)
+
+;; Treesitter
+(use-package treesit-auto
+  :ensure t
+  :pin melpa
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
+;; Clojure TreeSitter
+(use-package clojure-ts-mode
+    :ensure t)
