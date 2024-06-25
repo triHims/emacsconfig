@@ -381,3 +381,9 @@
 ;; Clojure TreeSitter
 (use-package clojure-ts-mode
     :ensure t)
+
+;;Ts snippets fix
+(add-to-list 'yas-snippet-dirs (concat local-abs-config-path local-abs-custom-packages "yasnippet-treesitter-shim/snippets/"))
+
+
+
