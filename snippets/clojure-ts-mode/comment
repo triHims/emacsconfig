@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: clojure-ts-comment
+# key: comment
+# --
+(comment $>
+	 $1
+  )$>
+$0

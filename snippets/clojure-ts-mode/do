@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: clojure-ts-do
+# key: do
+# --
+(do $1
+  )$>
+$0
