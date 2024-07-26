@@ -225,11 +225,6 @@
   :custom
   (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
 
-;;This tweak makes corfu plugins have precendence over evil ,
-;; Then we simply make triggers to normalize maps
-(evil-make-overriding-map corfu-map)
-(advice-add 'corfu--setup :after 'evil-normalize-keymaps)
-(advice-add 'corfu--teardown :after 'evil-normalize-keymaps)
 
 
 ;; yasnippets Config in lsp.el
