@@ -20,6 +20,8 @@
 (add-hook 'hs-minor-mode-hook (lambda ()
                                (setq hs-allow-nesting t)))
 
+(add-hook 'org-mode-hook (lambda ()
+                               (require 'ox-md nil t)))
 
 
 

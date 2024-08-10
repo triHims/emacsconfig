@@ -318,8 +318,10 @@
   :after
   org
   :hook
-  (org-mode . org-bullets-mode)
-  )
+  (org-mode . org-bullets-mode))
+  
+
+(setq org-adapt-indentation t)
 
 
 ;; For js install Prettier
