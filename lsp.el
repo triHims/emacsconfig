@@ -25,9 +25,11 @@
   :hook (python-mode . enable-flymake-with-eglot)
   :config
   (setq read-process-output-max (* 1024 1024))
+  (setq eglot-connect-timeout 120) ;; settime to 2 mins
   (push :documentHighlightProvider eglot-ignored-server-capabilities)
   ;;Adding groovy server
   (add-to-list 'eglot-server-programs `(groovy-mode . ( ,local-java8-path "-jar"  ,(expand-file-name (concat local-abs-config-path local-abs-custom-utils "groovy-language-server/groovy-language-server-all.jar")))))
+  (add-to-list 'eglot-server-programs '(clojure-ts-mode "clojure-lsp"))
   )
 
 (setq-default eglot-workspace-configuration

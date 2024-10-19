@@ -360,9 +360,11 @@
   :pin melpa-stable
   )
 
-(use-package evil-cleverparens
+(use-package lispy
   :ensure t
   :pin melpa
+  :hook
+  (emacs-lisp-mode-hook . lispy-mode)
   )
 
 ;; Use vterm
