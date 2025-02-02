@@ -2,8 +2,8 @@
 (setq local-abs-config-path "~/.config/emacs/")
 (setq local-abs-custom-utils "custom-utils/")
 (setq local-abs-custom-packages "custom-packages/")
-(setq local-java11-path "/Volumes/WORK/ProgramFiles/jdk-11.0.19+7/Contents/Home/bin/java")
-(setq local-jdk11-path "/Volumes/WORK/ProgramFiles/jdk-11.0.19+7/Contents/Home/bin/")
+(setq local-java11-path "/Volumes/WORK/ProgramFiles/jdk-11.0.22+7/Contents/Home/bin/java")
+(setq local-jdk11-path "/Volumes/WORK/ProgramFiles/jdk-11.0.22+7/Contents/Home/bin/")
 (setq local-java8-path "/Volumes/WORK/ProgramFiles/amazon-corretto-8.jdk/Contents/Home/bin/java")
 (setq local-jdk8-path "/Volumes/WORK/ProgramFiles/amazon-corretto-8.jdk/Contents/Home/bin/")
 
@@ -323,6 +323,9 @@
 
 (setq org-adapt-indentation t)
 
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "WAIT(w@/!)" "IN-PROGRESS(p@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+
 
 ;; For js install Prettier
 
@@ -384,4 +387,19 @@
 (add-to-list 'yas-snippet-dirs (concat local-abs-config-path local-abs-custom-packages "yasnippet-treesitter-shim/snippets/"))
 
 
+;; Pyenv python
+(use-package pyenv-mode
+  :ensure t
+  :init
+  (setq pyenv-mode-map
+	(let ((map (make-sparse-keymap)))
+	  map))
+  :hook python-ts-mode python-mode
+  :bind
+  (:map python-ts-mode-map
+	("C-c C-s" . pyenv-mode-set)
+	("C-c C-u" . pyenv-mode-unset)))
 
+;; Activate pyenv mode
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((python . t)))
