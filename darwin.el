@@ -6,14 +6,15 @@
 
 ;; join and dedup various paths
 ;; Add them to emacs path
-
-(setenv "PATH" (string-join (delete-dups
+(setq-local final-emacs-path (delete-dups
  (append 
+  exec-path
   (split-string (getenv "PATH") ":")
   (split-string pathStr ":")
   custom-path)
- ) ':' ))
-(setq exec-path (append exec-path custom-path))
+ ))
+(setenv "PATH" (string-join final-emacs-path ":" ))
+(setq exec-path final-emacs-path)
 
 (setenv "JAVA_HOME" JAVA_HOME)
 
