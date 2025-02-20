@@ -405,3 +405,8 @@
 ;; Activate pyenv mode
 (org-babel-do-load-languages
  'org-babel-load-languages '((python . t)))
+;; GoLang
+
+
+(use-package go-mode
+    :ensure t)
