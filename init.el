@@ -405,8 +405,19 @@
 ;; Activate pyenv mode
 (org-babel-do-load-languages
  'org-babel-load-languages '((python . t)))
+
 ;; GoLang
-
-
 (use-package go-mode
     :ensure t)
+
+
+
+;; GPTEL
+(use-package gptel
+    :ensure t)
+
+(setq
+ gptel-model 'gemini-pro
+ gptel-backend (gptel-make-gemini "Gemini"
+                 :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
+                 :stream t))

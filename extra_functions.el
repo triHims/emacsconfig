@@ -102,3 +102,18 @@
        (args (concat "find " currentdir " -type f -exec grep --color=auto -nH --null -e " keyword " \{\} +")))
     (grep-find args)))
 
+
+
+(defun hims-read-file-as-string (filename)
+  (with-temp-buffer
+    (insert-file-contents filename)
+    (buffer-string))
+  )
+
+
+
+(defun hims-read-short-keys (filename)
+  (string-trim (hims-read-file-as-string filename))
+  )
+
+
