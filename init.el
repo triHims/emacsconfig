@@ -415,12 +415,74 @@
 
 
 
-;; GPTEL
-(use-package gptel
-    :ensure t)
+;;ELLAMA
 
-(setq
- gptel-model 'gemini-pro
- gptel-backend (gptel-make-gemini "Gemini"
-                 :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
-                 :stream t))
+(use-package ellama
+  :ensure t
+  :bind ("C-c e" . ellama)
+  ;; send last message in chat buffer with C-c C-c
+  :hook (org-ctrl-c-ctrl-c-final . ellama-chat-send-last-message)
+  :init
+  ;; setup key bindings
+  ;;(setopt ellama-keymap-prefix "SPC a")
+  ;; language you want ellama to translate to
+  (setopt ellama-language "English")
+  ;; could be llm-openai for example
+  (require 'llm-gemini)
+  (setopt ellama-provider
+  	  (make-llm-gemini
+  	   ;; this model should be pulled to use it
+  	   ;; value should be the same as you print in terminal during pull
+	   :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
+  	   :chat-model "gemini-2.5-pro-exp-03-25"))
+  (setopt ellama-summarization-provider
+  	  (make-llm-gemini
+	   :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
+  	   :chat-model "gemini-2.0-flash-lite-001"))
+  (setopt ellama-coding-provider
+  	  (make-llm-gemini
+	   :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
+  	   :chat-model "gemini-2.0-flash"))
+  ;; Predefined llm providers for interactive switching.
+  ;; You shouldn't add ollama providers here - it can be selected interactively
+  ;; without it. It is just example.
+  (setopt ellama-providers
+	  '(("Gemini 2.5" . (make-llm-gemini
+			     ;; this model should be pulled to use it
+			     ;; value should be the same as you print in terminal during pull
+			     :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
+			     :chat-model "gemini-2.5-pro-exp-03-25"))
+	    ("Gemini Flash Lite" . (make-llm-gemini
+				    :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
+				    :chat-model "gemini-2.0-flash-lite-001"))
+	    ("Gemini Flash" . (make-llm-gemini
+			       :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
+			       :chat-model "gemini-2.0-flash"))))
+  ;; Naming new sessions with llm
+  (setopt ellama-naming-provider
+  	  (make-llm-gemini
+			     ;; this model should be pulled to use it
+			     ;; value should be the same as you print in terminal during pull
+			     :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
+			     :chat-model "gemini-2.5-pro-exp-03-25"))
+  (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
+  ;; Translation llm provider
+  (setopt ellama-translation-provider
+  	  (make-llm-gemini
+				    :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
+				    :chat-model "gemini-2.0-flash-lite-001"))
+  (setopt ellama-extraction-provider (make-llm-gemini
+				    :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
+				    :chat-model "gemini-2.0-flash-lite-001"))
+  ;; customize display buffer behaviour
+  ;; see ~(info "(elisp) Buffer Display Action Functions")~
+  (setopt ellama-chat-display-action-function #'display-buffer-full-frame)
+  (setopt ellama-instant-display-action-function #'display-buffer-at-bottom)
+  :config
+  ;; show ellama context in header line in all buffers
+  (ellama-context-header-line-global-mode +1)
+  ;; show ellama session id in header line in all buffers
+  (ellama-session-header-line-global-mode +1)
+  ;; handle scrolling events
+  (advice-add 'pixel-scroll-precision :before #'ellama-disable-scroll)
+  (advice-add 'end-of-buffer :after #'ellama-enable-scroll))
