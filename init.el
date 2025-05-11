@@ -363,6 +363,12 @@
   :pin melpa-stable
   )
 
+(use-package rainbow-delimiters
+  :ensure t
+  :hook
+  (prog-mode-hook . rainbow-delimiters-mode)
+  )
+
 (use-package lispy
   :ensure t
   :pin melpa
