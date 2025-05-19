@@ -365,15 +365,13 @@
 
 (use-package rainbow-delimiters
   :ensure t
-  :hook
-  (prog-mode-hook . rainbow-delimiters-mode)
+  :hook prog-mode
   )
 
 (use-package lispy
   :ensure t
   :pin melpa
-  :hook
-  (emacs-lisp-mode-hook . lispy-mode)
+  :hook (emacs-lisp-mode clojure-mode)
   )
 
 ;; Use vterm
