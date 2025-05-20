@@ -1,10 +1,3 @@
-;;Setup lsp and then work to the language
-(defun enable-flymake-with-eglot ()
-  "Enable flymake with eglot for linting"
-  (setq eglot-stay-out-of '(flymake))
-  )
-
-
 ;; To make your snippets do yas-new-snippet 
 ;; 0$ last place where your cursor ends up
 (use-package yasnippet
@@ -22,7 +15,6 @@
 (use-package eglot
   :ensure t
   :defer t
-  :hook (python-mode . enable-flymake-with-eglot)
   :config
   (setq read-process-output-max (* 1024 1024))
   (setq eglot-connect-timeout 120) ;; settime to 2 mins
@@ -39,3 +31,16 @@
 ;; 
 
 ;;Python use pylint with pyright for complete experience
+
+
+
+;; JAVA Settings
+(setq eglot-java-user-init-opts-fn 'custom-eglot-java-init-opts)
+(defun custom-eglot-java-init-opts (server eglot-java-eclipse-jdt)
+  "Custom options that will be merged with any default settings."
+  '(:settings
+    (:java
+     (:format
+      (:settings
+       (:url "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml")
+       :enabled t)))))

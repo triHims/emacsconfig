@@ -89,11 +89,7 @@
   (:map evil-normal-state-map
 	("<leader> e"       . treemacs-select-window)
 	("<leader> E"       . treemacs-find-file)
-	)
-  (:map evil-treemacs-state-map
-	("<leader> e"       . treemacs-select-window)
-	)
-  )
+	))
 
 (use-package treemacs-evil
   :after (treemacs evil)

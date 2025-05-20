@@ -11,9 +11,33 @@
 
 (evil-define-key 'normal flymake-mode-map (kbd "[d") 'flymake-goto-prev-error)
 (evil-define-key 'normal flymake-mode-map (kbd "]d") 'flymake-goto-next-error)
+
 ;; Eglot keybindings
 (evil-define-key 'normal eglot-mode-map (kbd "<leader>lr") 'eglot-rename)
 (evil-define-key 'normal eglot-mode-map (kbd "<leader>lF") 'eglot-format)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>la") 'eglot-code-actions)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>lh") 'eldoc)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>lf") 'eglot-format-buffer)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>lg") 'eglot-find-implementation)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>ld") 'xref-find-definitions)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>lD") 'eglot-find-declaration)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>lt") 'eglot-find-typeDefinition)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>li") 'eglot-find-implementation)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>ls") 'eglot-shutdown)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>ll") 'eglot-reconnect)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>lR") 'eglot-reconnect)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>lw") 'eglot-show-workspace-configuration)
+
+;; Additional Eglot actions
+(defun eglot-organize-imports ()
+  "Organize imports using Eglot."
+  (interactive)
+  (eglot-code-actions nil nil "source.organizeImports" t))
+
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>lo") 'eglot-organize-imports)
+
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>le") 'flymake-show-buffer-diagnostics)
+
 
 
 (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
@@ -34,3 +58,16 @@
 (evil-global-set-key 'normal (kbd "<leader>fF") 'find-dired)
 (evil-global-set-key 'normal (kbd "<leader>fg") 'grep-eager)
 (evil-global-set-key 'normal (kbd "<leader>fG") 'grep-find)
+
+
+
+;; Eglot-java keybindings
+
+(add-hook 'java-mode-hook 'eglot-java-mode)
+(with-eval-after-load 'eglot-java
+  (define-key eglot-java-mode-map (kbd "C-c l n") #'eglot-java-file-new)
+  (define-key eglot-java-mode-map (kbd "C-c l x") #'eglot-java-run-main)
+  (define-key eglot-java-mode-map (kbd "C-c l t") #'eglot-java-run-test)
+  (define-key eglot-java-mode-map (kbd "C-c l N") #'eglot-java-project-new)
+  (define-key eglot-java-mode-map (kbd "C-c l T") #'eglot-java-project-build-task)
+  (define-key eglot-java-mode-map (kbd "C-c l R") #'eglot-java-project-build-refresh))

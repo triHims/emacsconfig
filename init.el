@@ -497,4 +497,4 @@
 
 (use-package eglot-java
   :ensure t
-  :hook)
+  :hook java-mode)
