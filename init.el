@@ -299,6 +299,7 @@
 ;;Dired settings
 
 (setq dired-kill-when-opening-new-dired-buffer t)
+(put 'dired-find-alternate-file 'disabled nil)
 ;;Groovy modes
 
 (use-package groovy-mode
@@ -490,8 +491,6 @@
   ;; handle scrolling events
   (advice-add 'pixel-scroll-precision :before #'ellama-disable-scroll)
   (advice-add 'end-of-buffer :after #'ellama-enable-scroll))
-
-
 
 ;; Java - eglot
 
