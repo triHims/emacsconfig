@@ -114,25 +114,37 @@
 ;; Remember and restore the last cursor location of opened files
 (save-place-mode 1)
 
-
-;; Enable ido configs
-(ido-mode 1)
-(ido-everywhere 1)
-(fido-mode 1)
-(fido-vertical-mode 1)
-
-(use-package ido-vertical-mode
+;; Vertico: Minibuffer completion UI (replaces ido/fido)
+(use-package vertico
   :ensure t
   :init
-  (setq ido-vertical-define-keys nil)
-  (ido-vertical-mode 1)
-  )
+  (vertico-mode))
 
-(add-hook 'ido-setup-hook (lambda ()
-			    (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-			    (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
-			    )
-	  )
+;; Orderless: Powerful fuzzy matching
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless))
+  (completion-category-defaults nil))
+
+;; Optional: Annotate minibuffer choices
+(use-package marginalia
+  :ensure t
+  :init
+  (marginalia-mode))
+
+
+;; Add consult
+(use-package consult
+  :ensure t
+  :bind (("C-s"     . consult-line)           ;; Fuzzy buffer search
+         ("M-y"     . consult-yank-pop)       ;; Kill ring with preview
+         ("C-c r"   . consult-recent-file)    ;; Recent files
+         ("C-c i"   . consult-imenu)          ;; Jump to symbol in buffer
+         ("C-c g"   . consult-ripgrep)          ;; Project grep (requires ripgrep)
+         ("C-x b"   . consult-buffer)        ;; Replaces switch-to-buffer
+         ("C-c r"   . consult-recent-file)   ;; Recent files
+	 ))      
 
 
 ;; Disable emacs bell

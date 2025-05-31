@@ -6,7 +6,7 @@
 
 ;; get rid of `find-file-read-only' and replace it with something
 ;; more useful.
-(evil-global-set-key 'normal (kbd "<leader>fr") 'ido-recentf-open)
+(evil-global-set-key 'normal (kbd "<leader>fr") 'consult-recent-file)
 
 
 (evil-define-key 'normal flymake-mode-map (kbd "[d") 'flymake-goto-prev-error)
@@ -54,10 +54,11 @@
 ;;files and dir
 
 
-(evil-global-set-key 'normal (kbd "<leader>ff") 'find-dired-eager)
+(evil-global-set-key 'normal (kbd "<leader>ff") 'consult-find)
 (evil-global-set-key 'normal (kbd "<leader>fF") 'find-dired)
-(evil-global-set-key 'normal (kbd "<leader>fg") 'grep-eager)
-(evil-global-set-key 'normal (kbd "<leader>fG") 'grep-find)
+(evil-global-set-key 'normal (kbd "<leader>fl") 'consult-locate)
+(evil-global-set-key 'normal (kbd "<leader>fg") 'consult-ripgrep)
+(evil-global-set-key 'normal (kbd "<leader>fG") 'consult-grep)
 
 
 

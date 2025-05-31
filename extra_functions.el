@@ -1,10 +1,3 @@
-;;Recentf ido
-(defun ido-recentf-open ()
-  "Use `ido-completing-read' to \\[find-file] a recent file"
-  (interactive)
-  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
-      (message "Opening file...")
-    (message "Aborting")))
 
 (defun custom-apply-to-pairs (fn common lst)
   "Apply function FN to pairs of elements in LST."
