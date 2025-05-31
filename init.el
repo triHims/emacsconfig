@@ -507,5 +507,7 @@
 ;; Java - eglot
 
 (use-package eglot-java
+  :requires eglot
   :ensure t
-  :hook java-mode)
+  :hook (java-mode java-ts-mode)
+  )

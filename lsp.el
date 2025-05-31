@@ -33,14 +33,25 @@
 ;;Python use pylint with pyright for complete experience
 
 
+  ;;`(:bundles (list (concat local-abs-config-path local-abs-custom-packages "com.microsoft.java.debug.plugin-0.53.1.jar"))
 
 ;; JAVA Settings
 (setq eglot-java-user-init-opts-fn 'custom-eglot-java-init-opts)
 (defun custom-eglot-java-init-opts (server eglot-java-eclipse-jdt)
-  "Custom options that will be merged with any default settings."
-  '(:settings
-    (:java
-     (:format
-      (:settings
-       (:url "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml")
-       :enabled t)))))
+  ;;   "Custom options that will be merged with any default settings."
+  '(:bundles ["/Users/himanshutripathi/.config/emacs/custom-packages/com.microsoft.java.debug.plugin-0.53.1.jar"]
+	     :settings
+	     (:java
+	      (:format
+	       (:settings
+		(:url "/Users/himanshutripathi/.config/emacs/custom-utils/java-style/intellij.xml")
+		:enabled t))
+	      :saveActions (:organizeImports t)                                                                                                         
+	      :completion (                                                                                                                             
+			   :enabled t                                                                                                                   
+			   :overwrite t                                                                                                                 
+			   :guessMethodArguments t                                                                                                      
+			   :importOrder ["java" "javax" "jakarta" "org" "co" "com" "io" "net" "software" "test"])                  
+	      ) 
+	      ))
+
