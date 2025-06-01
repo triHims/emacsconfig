@@ -22,3 +22,4 @@
 
 (setq org-directory "~/Dropbox/NOTES")
 (setq org-default-notes-file (concat org-directory "~/Dropbox/NOTES/captured-notes.org"))
+(setq consult-locate-args "mdfind -name")
