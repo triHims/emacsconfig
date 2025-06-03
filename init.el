@@ -75,7 +75,6 @@
 (setq evil-split-window-below t)
 (setq evil-vsplit-window-right t)
 (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
-(setq evil-want-keybinding nil)
 
 (use-package goto-chg
   :ensure t)
@@ -91,6 +90,21 @@
   :ensure t
   :config
   (global-evil-surround-mode 1))
+
+
+(use-package evil-numbers
+  :ensure t
+  :bind
+  (:map evil-normal-state-map
+        ("C-c +" . evil-numbers/inc-at-pt)
+        ("C-c -" . evil-numbers/dec-at-pt)))
+
+
+(use-package evil-commentary
+  :ensure t
+  :after evil
+  :config
+  (evil-commentary-mode))
 
 
 (use-package which-key
@@ -239,7 +253,12 @@
   ;; Other useful Dabbrev configurations.
   :custom
   (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
-
+(setq hippie-expand-try-functions-list
+      '(try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-complete-lisp-symbol
+        try-complete-lisp-symbol-partially))
 
 
 ;; yasnippets Config in lsp.el
@@ -381,11 +400,17 @@
   :hook prog-mode
   )
 
-(use-package lispy
+(use-package smartparens
   :ensure t
-  :pin melpa
-  :hook (emacs-lisp-mode clojure-mode)
-  )
+  :hook (prog-mode . smartparens-mode))
+
+(use-package evil-cleverparens
+  :ensure t
+  :hook ((emacs-lisp-mode
+          clojure-mode
+          scheme-mode) . evil-cleverparens-mode)
+  :config
+  (add-hook 'evil-cleverparens-mode-hook #'smartparens-strict-mode))
 
 ;; Use vterm
 (use-package vterm
