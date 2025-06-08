@@ -51,11 +51,6 @@ then
 
     echo "========================================================="
 
-    echo "Setting up evil (bug leader is not bound)"
-    git clone https://github.com/emacs-evil/evil.git
-
-    echo ""
-    echo ""
 
     echo "Package setup complete"
 

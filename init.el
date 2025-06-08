@@ -66,9 +66,11 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-;;Load evil custom
-(add-to-list 'load-path (concat local-abs-config-path local-abs-custom-packages "evil"))
-(require 'evil)
+(use-package evil
+  :ensure t
+  :pin melpa
+  )
+
 (evil-select-search-module 'evil-search-module 'evil-search)
 (setq evil-undo-system 'undo-redo)
 
@@ -113,6 +115,7 @@
 	     (which-key-mode))
 (use-package monokai-theme
 	     :ensure t
+	     :pin melpa
 	     )
 
 
@@ -429,9 +432,6 @@
 ;; Clojure TreeSitter
 (use-package clojure-ts-mode
     :ensure t)
-
-;;Ts snippets fix
-(add-to-list 'yas-snippet-dirs (concat local-abs-config-path local-abs-custom-packages "yasnippet-treesitter-shim/snippets/"))
 
 
 ;; Pyenv python
