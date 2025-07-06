@@ -476,11 +476,11 @@
   	   ;; this model should be pulled to use it
   	   ;; value should be the same as you print in terminal during pull
 	   :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
-  	   :chat-model "gemini-2.5-pro-exp-03-25"))
+  	   :chat-model "gemini-2.5-pro"))
   (setopt ellama-summarization-provider
   	  (make-llm-gemini
 	   :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
-  	   :chat-model "gemini-2.0-flash-lite-001"))
+  	   :chat-model "gemini-2.0-flash"))
   (setopt ellama-coding-provider
   	  (make-llm-gemini
 	   :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
@@ -493,10 +493,10 @@
 			     ;; this model should be pulled to use it
 			     ;; value should be the same as you print in terminal during pull
 			     :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
-			     :chat-model "gemini-2.5-pro-exp-03-25"))
+			     :chat-model "gemini-2.5-pro"))
 	    ("Gemini Flash Lite" . (make-llm-gemini
 				    :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
-				    :chat-model "gemini-2.0-flash-lite-001"))
+				    :chat-model "gemini-2.0-flash-lite"))
 	    ("Gemini Flash" . (make-llm-gemini
 			       :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
 			       :chat-model "gemini-2.0-flash"))))
@@ -512,10 +512,10 @@
   (setopt ellama-translation-provider
   	  (make-llm-gemini
 				    :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
-				    :chat-model "gemini-2.0-flash-lite-001"))
+				    :chat-model "gemini-2.0-flash-lite"))
   (setopt ellama-extraction-provider (make-llm-gemini
 				    :key (hims-read-short-keys "~/.local/tripathikeys/.geminikey")
-				    :chat-model "gemini-2.0-flash-lite-001"))
+				    :chat-model "gemini-2.0-flash-lite"))
   ;; customize display buffer behaviour
   ;; see ~(info "(elisp) Buffer Display Action Functions")~
   (setopt ellama-chat-display-action-function #'display-buffer-full-frame)
