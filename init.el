@@ -63,7 +63,7 @@
 
 ;; Download Evil
 (unless (package-installed-p 'use-package)
-  (package-refresh-contents)
+  (package-refresh-contents t)
   (package-install 'use-package))
 
 (use-package evil
