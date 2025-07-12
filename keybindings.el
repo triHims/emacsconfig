@@ -75,3 +75,15 @@
   (define-key eglot-java-mode-map (kbd "C-c l N") #'eglot-java-project-new)
   (define-key eglot-java-mode-map (kbd "C-c l T") #'eglot-java-project-build-task)
   (define-key eglot-java-mode-map (kbd "C-c l R") #'eglot-java-project-build-refresh))
+
+
+
+;; Lisp keybindings
+(evil-define-key 'insert smartparens-mode-map
+    (kbd "C-}") #'sp-forward-slurp-sexp
+    (kbd "C-{") #'sp-forward-barf-sexp
+    (kbd "C-)") #'sp-wrap-round
+    (kbd "C-]") #'sp-wrap-square
+    (kbd "C-\"") #'sp-wrap-doublequote
+    (kbd "C-k") #'sp-kill-sexp
+    (kbd "C-M-k") #'sp-backward-kill-sexp)

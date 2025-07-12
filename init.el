@@ -405,15 +405,15 @@
 
 (use-package smartparens
   :ensure t
-  :hook (prog-mode . smartparens-mode))
-
-(use-package evil-cleverparens
-  :ensure t
   :hook ((emacs-lisp-mode
-          clojure-mode
-          scheme-mode) . evil-cleverparens-mode)
+        clojure-mode
+        clojure-ts-mode
+        lisp-mode
+        scheme-mode
+        fennel-mode
+        racket-mode) . smartparens-mode)
   :config
-  (add-hook 'evil-cleverparens-mode-hook #'smartparens-strict-mode))
+  (require 'smartparens-config))
 
 ;; Use vterm
 (use-package vterm
