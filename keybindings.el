@@ -87,3 +87,6 @@
     (kbd "C-\"") #'sp-wrap-doublequote
     (kbd "C-k") #'sp-kill-sexp
     (kbd "C-M-k") #'sp-backward-kill-sexp)
+
+(with-eval-after-load 'cider
+(define-key cider-mode-map (kbd "C-c C-v f") #'cider-eval-file))

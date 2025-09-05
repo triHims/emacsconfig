@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: clojure-ts-comment
+# name: clojure-comment
 # key: comment
 # --
 (comment $>

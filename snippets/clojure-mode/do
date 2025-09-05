@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: clojure-ts-do
+# name: clojure-do
 # key: do
 # --
 (do $1

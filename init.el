@@ -57,7 +57,7 @@
 (setq package-archive-priorities
       '(("melpa-stable" . 10)
        ("elpa" . 5)
-       ("melpa"        . 0))
+       ("melpa"        . 2))
       )
 (package-initialize)
 
@@ -161,7 +161,10 @@
          ("C-c g"   . consult-ripgrep)          ;; Project grep (requires ripgrep)
          ("C-x b"   . consult-buffer)        ;; Replaces switch-to-buffer
          ("C-c r"   . consult-recent-file)   ;; Recent files
-	 ))      
+	 )
+  :config (setq consult-preview-key "M-.")
+  )      
+
 
 
 ;; Disable emacs bell
@@ -536,3 +539,8 @@
   :ensure t
   :hook (java-mode java-ts-mode)
   )
+
+
+
+;; Disable pinch gestrue 
+(global-set-key (kbd "<pinch>") 'ignore)
