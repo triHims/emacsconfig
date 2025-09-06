@@ -544,3 +544,9 @@
 
 ;; Disable pinch gestrue 
 (global-set-key (kbd "<pinch>") 'ignore)
+
+
+;;Tab bar mode
+(add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)
+(tab-bar-mode t)
+
