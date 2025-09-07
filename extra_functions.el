@@ -109,4 +109,17 @@
   (string-trim (hims-read-file-as-string filename))
   )
 
+(defun sp-wrap-round ()
+  "Wrap following sexp in round parentheses."
+  (interactive)
+  (sp-wrap-with-pair "("))
 
+(defun sp-wrap-square ()
+  "Wrap following sexp in square brackets."
+  (interactive)
+  (sp-wrap-with-pair "["))
+
+(defun sp-wrap-curly ()
+  "Wrap following sexp in curly braces."
+  (interactive)
+  (sp-wrap-with-pair "{"))

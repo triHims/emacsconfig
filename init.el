@@ -158,6 +158,7 @@
          ("M-y"     . consult-yank-pop)       ;; Kill ring with preview
          ("C-c r"   . consult-recent-file)    ;; Recent files
          ("C-c i"   . consult-imenu)          ;; Jump to symbol in buffer
+	 ("C-c I"   . consult-imenu-multi)
          ("C-c g"   . consult-ripgrep)          ;; Project grep (requires ripgrep)
          ("C-x b"   . consult-buffer)        ;; Replaces switch-to-buffer
          ("C-c r"   . consult-recent-file)   ;; Recent files
@@ -406,6 +407,7 @@
   :hook prog-mode
   )
 
+;;Smartparens
 (use-package smartparens
   :ensure t
   :hook ((emacs-lisp-mode
@@ -417,6 +419,8 @@
         racket-mode) . smartparens-mode)
   :config
   (require 'smartparens-config))
+
+
 
 ;; Use vterm
 (use-package vterm
@@ -549,4 +553,21 @@
 ;;Tab bar mode
 (add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)
 (tab-bar-mode t)
+
+
+;;Imenu configs
+; I intend to use imenu with consult so i have added C-c i and C-c I
+
+;AutoScan setup imenu
+(add-hook 'markdown-mode-hook (lambda () (setq-local imenu-auto-rescan t)))
+(add-hook 'makefile-mode-hook (lambda () (setq-local imenu-auto-rescan t)))
+(add-hook 'prog-mode-hook
+      (lambda ()
+        (setq-local imenu-auto-rescan t)
+        (setq-local imenu-sort-function #'imenu--sort-by-name)))
+
+
+;Org mode imenu
+(setq org-imenu-depth 7) ;;Org menu has depth 2 change it to 7
+(add-hook 'org-mode-hook (lambda () (setq-local imenu-auto-rescan t)))
 
