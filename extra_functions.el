@@ -123,3 +123,12 @@
   "Wrap following sexp in curly braces."
   (interactive)
   (sp-wrap-with-pair "{"))
+
+
+
+(defun subtract-time-from-string (time-str seconds)
+  "Subtract SECONDS from TIME-STR (\"YYYY-MM-DD HH:MM:SS\") and return new string."
+  (let* ((time (date-to-time time-str))
+         (new-time (time-subtract time (seconds-to-time seconds))))
+    (format-time-string "%Y-%m-%d %H:%M:%S" new-time)))
+
